@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    </head>
+    <body class="container">
+        <%- include('../partials/header.ejs') %>    
+        <div class="row">
+            <div class="col-md-4">
+                <form id="myForm" action="agregarh" method="post">
+                    <div>
+                        <label class="form-label">Partida Id</label>
+                        <input id="form-codigo" class="form-control" type="text" name="id" />
+                    </div>
+                    <div>
+                        <label class="form-label">Monto</label>
+                        <input id="form-nombre" class="form-control" type="text" name="monto" />
+                    </div>
+                    <button id="but-agregar" type="button" class="btn btn-primary mt-2">Grabar</button>
+                </form>
+
+            </div>
+        
+            <div class="col-md-8">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>PartidaId</th>
+                            <th>Monto</th>
+                            <th>Ganancia</th>
+                        </tr>
+                    </thead>
+                    <tbody id="datos">
+                        
+                        <% p1.forEach(  function(s) { %>
+                            <tr>
+                                <td> <%= s.PartidaId %></td>
+                                <td> <%= s.monto %></td>
+                                <td> <%= s.monto*1.3 %></td>
+                                <td>
+                                    <form action="eliminarh" method="post">
+                                        <input type="hidden" name="id" value=<%= s.id %> >
+                                        <button id="but-eliminar" type="button" class="btn btn-danger btn-sm" onclick="submit();"> Eliminar </button>
+                                    </form>    
+                                </td>
+                                <td>
+                                    <form action="editar" method="post">
+                                        <input type="hidden" name="id" value=<%= s.id %> >
+                                        <button id="but-editar" type="button" class="btn btn-warning btn-sm" onclick="submit();"> Editar </button>
+                                    </form>    
+                                </td>            
+                            </tr>
+                        <% }) %>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div id="mensaje"  class="alert alert-danger alert-dismissible fade show"  style="display: none;">
+             Error al llenar los datos.
+            <button id="but-cerrar" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        
+
+        <div class="card">
+            <div class="card-body">
+                <%- include('../partials/footer.ejs') %>
+            </div>
+        </div>
+        
+        <script src="../js/script.js"></script>
+    </body>
+</html>

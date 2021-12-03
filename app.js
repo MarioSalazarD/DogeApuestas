@@ -225,6 +225,68 @@ app.post(("/login/autentC"),async (req, res, next) => {
       });
   });
 
+app.get(("/principal"), async (req,res,next) => {
+      // Aqui debo leer la BD y mostrar los datos en la vista principal
+      // Voy a usar la pantilla2
+      await queryh()
+          .then( (listado) => {
+              res.render('agregarapuesta.ejs',{ p1: listado})
+          } )
+          .catch( (error) => {
+              console.log("Ocurrio un error en el query", error)
+          })
+
+  })
+
+
+
+
+app.post(("/agregarh") ,async(req,res,next) =>{
+      /*
+      console.log(req.body.codigo)
+      console.log(req.body.nombre)
+      console.log(req.body.edad)
+      */
+     await inserth(
+              req.body.PartidaId,
+              req.body.Monto
+          )
+          .then( async () =>{
+              await queryh()
+              .then( (listado) => {
+                  res.render('agregarapuesta.ejs',{ p1: listado})
+              } )
+              .catch( (error) => {
+                  console.log("Ocurrio un error en el query", error)
+              })                
+          })
+          .catch( (error) => {
+              console.log("Ocurrio un error en el insert", error)
+          })
+
+  })
+
+  app.post(("/eliminarh"), async (req,res,next) => {
+        await eliminah(
+            req.body.id
+        )
+        .then( async () =>{
+            await queryh()
+            .then( (listado) => {
+                res.render('agregarapuesta.ejs',{ p1: listado})
+            } )
+            .catch( (error) => {
+                console.log("Ocurrio un error en el query", error)
+            })                
+        })
+        .catch( (error) => {
+            console.log("Ocurrio un error en el delete", error)
+        })
+
+    })
+
+
+
 
 
 
