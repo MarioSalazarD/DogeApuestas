@@ -1,7 +1,7 @@
 const models = require("../models");
 const usr = models.Partida;
 
-const insertap = async(id, fec, hora,dur,equA,equB,facA,facB,selec) => {
+const insertap = async(id, fec, hora,dur,equA,equB,facA,facB,selec,jid) => {
     console.log("==> Inicio de insert")
 
     return usr.create({
@@ -14,6 +14,7 @@ const insertap = async(id, fec, hora,dur,equA,equB,facA,facB,selec) => {
             factorA: facA,
             factorB: facB,
             selector: selec,
+            juegoId: jid
 
         })
         .then((newUsr) => {
