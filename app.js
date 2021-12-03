@@ -97,12 +97,13 @@ const users = []
 
 app.use(cookiePerser('mi secreto'));
 
+app.use(express.static(__dirname + "/public"));
 //Sets ejs as view engine
 app.set('view-engine', 'ejs')
 
 app.use(express.urlencoded({ extended: true }))
 
-app.use(express.static(__dirname + "../public"));
+
 
 //Set up secret key located in the .env file
 app.use(flash())
@@ -129,24 +130,6 @@ app.get('/register', (req, res) => {
     res.render('register.ejs')
 });
 
-//Sets view route for our banner page
-app.get('/banners', async (req, res) => {
-    
-    // await query()
-    // .then((listado) =>{
-    //     res.render('banner.ejs', {banners: listado})
-    // })
-    // .catch((error) => {
-    //     console.log("Ocurrio error en query", error);
-    // })
-    // // var banners = [
-    // //     { id : "1", nombre: "Banner Fultbol", imagen: '', url: 'inicio/banners', estado: 'Activo'},
-    // //     { id : "2", nombre: "Banner Casino", imagen: '', url: 'inicio/banners', estado: 'Inactivo'},
-    // //     { id : "3", nombre: "Banner Carrera Caballos", imagen: '', url: 'inicio/banners', estado: 'Activo'},
-    // //     { id : "4", nombre: "Banner Poker", imagen: '', url: 'inicio/banners', estado: 'Inactivo'}
-    // // ]
-    // // res.render('banner.ejs', {banners: banners})
-});
 
 //Sets view route for our juegos page
 app.get('/juegos', (req, res) => {
@@ -166,13 +149,6 @@ app.get('/juegosnuevo', (req, res) => {
 app.get('/juegoeditar', (req, res) => {
     res.render('juegoeditar.ejs')
 });
-/*      <th scope="col">Id</th>
-      <th scope="col">Juego</th>
-      <th scope="col">Fecha</th>
-      <th scope="col">Hora</th>
-      <th scope="col">Duración</th>
-      <th scope="col">Estado</th>
-*/
 
 //lista de partidas
 app.get('/partidas', (req, res) => {
