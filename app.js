@@ -124,6 +124,10 @@ app.get('/', (req, res) => {
     res.render('index.ejs')
 });
 
+app.get('/', (req, res) => {
+    res.render('index2.ejs')
+});
+
 //Sets view route for our juegos page
 app.get('/juegos', (req, res) => {
     var juegos = [
