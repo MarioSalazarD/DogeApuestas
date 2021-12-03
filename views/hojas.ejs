@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div> 
+    <span>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Monto</th>
+                <th scope="col">GananciaA</th>
+                <th scope="col">GananciaB</th>
+                <th scope="col">Ganador</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% hojas.forEach(  function(hoja) { %>
+                <tr>
+                  <th scope="row"> <%= hoja.id %></th>
+                  <td><%= hoja.monto %></td>
+                  <td><%= hoja.ganancia %></td>
+                  <td><%= hoja.ganador %></td>
+                  <td><button>Editar</button></td>
+                </tr>
+            <% }) %>
+            </tbody>
+          </table>
+    </span>
+
+    </div>
+    <div>   
+    <span>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">FactorA</th>
+                <th scope="col">FactorB</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% partidas.forEach(  function(partida) { %>
+                <tr>
+                  <th scope="row"> <%= partida.id %></th>
+                  <td><%= partida.factorA %></td>
+                  <td><%= partida.factorB %></td>
+                  <td><button>Editar</button></td>
+                </tr>
+            <% }) %>
+            </tbody>
+          </table>
+    </span>
+    
+    </div>
+    <div>
+    <span>
+
+
+    </span>
+    
+    </div>
+</body>
+</html>

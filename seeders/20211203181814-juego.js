@@ -17,7 +17,7 @@ module.exports = {
         nombre: "Copa Nacional",
         categoriaJuegoId:1,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
         id:2,

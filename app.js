@@ -112,7 +112,7 @@ app.post(("/autent"),async (req, res, next) => {
         login = usuarios.length ? usuarios[0].contrasena === req.body.password : false;
         if (login) {
           req.session.user = usuarios[0];
-          res.redirect("/inicio.ejs");
+          res.redirect("index.ejs");
         } else res.render("login.ejs");
       })
       .catch((error) => {
@@ -156,6 +156,18 @@ app.get( ('/administrarBanners'), async (req,res,next) => {
         })
 
 })
+
+app.get(('/Hojas/cliente1'),async (req,res,next)=>{
+    let hojas = await query1h(1).catch((error)=>{
+        console.log("Ocurrio un error en el query", error);
+    });
+    let partidas = await query1p(1).catch((error)=>{
+        console.log("ocurrio un error en el query", error);
+    });
+
+    res.render('hojas.ejs',{hojas: hojas, partidas: partidas})
+})
+
 
 app.get('/administrarBanners/new', (req, res)=>{
     if(req.session.rol=="admin"){
@@ -226,7 +238,6 @@ app.post('/administrarBanners/editar', async(req,res)=>{
     res.redirect('/administrarBanners')
 })
 
-<<<<<<< Updated upstream
 app.get('/partidas',async (req,res,next)=>{
     await queryp()
         .then( (listado) => {
@@ -239,51 +250,6 @@ app.get('/partidas',async (req,res,next)=>{
 
 
 
-=======
-/*app.get('/administrarPartidas', async (req,res)=>{
-    const juego = await db.Juego.findAll()
-    const categoria = await db.Categoriajuego.findAll()
-
-    const partidas = await db.Partida.findAll({
-        order:[
-            ['fecha','DESC'],
-            ['hora','DESC'],
-        ],
-        
-    });
-
-    let nlistapartidas = []
-    for(let partida of partidas){
-        const Juego = await partida.getJuego()
-        nlistapartidas.push({
-            id: partida.id,
-            fecha: partida.fecha,
-            hora: partida.hora,
-            duracion: partida.duracion,
-            estado: partida.estado,
-            equipo1: partida.equipoA,
-            equipo2: partida.equipoB,
-            factorA: partida.factorA,
-            factorB: partida.factorB,
-            factorEmpate: partida.factorEmpate,
-            Resultado: partida.Resultado,
-            juegoNombre: Juego.nombre
-            
-        })
-    }
-    if(req.session.rol=="admin"){
-        res.render('administrarPartidas',{
-            partidas:nlistapartidas,
-            juego:juego,
-            categoria :categoria ,
-            rol: req.session.rol,
-            nombre: req.session.nombre
-        })
-    }else{
-        res.redirect('/noAutorizado')
-    }
-})*/
->>>>>>> Stashed changes
 app.get('/noAutorizado',(req,res)=>{
     res.render('noeresAdmin',{
         rol: req.session.rol,

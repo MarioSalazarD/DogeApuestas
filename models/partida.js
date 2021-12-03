@@ -15,9 +15,9 @@ module.exports = (sequelize, DataTypes) => {
                 foreignkey: 'juegoId',
                 as: 'jueguitos'
             });
-            models.Partida.belongsTo(models.HojApuestas, {
-                foreignkey: 'hojApuestaId',
-                as: 'hojapuestitas'
+            models.Partida.hasMany(models.HojApuestas, {
+                foreignkey: 'PartidaId',
+                as: 'partiditas'
             });
         }
     };
