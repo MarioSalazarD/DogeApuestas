@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+    
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Proyecto Pagina Apuestas</title>
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+
+<body>
+
+  <div class="container-titulo">
+    <h1>Banners</h1> <h1>Banners</h1>
+  </div>
+<div class="col-xl-12">
+  <div class="ui-g-12 content table-content">
+    <div class="contenedor">
+     <button class="btn btn-danger btn-lg-maintenance mr-3">Registrar</button>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Imagen</th>
+          <th scope="col">Url</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Accion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% banners.forEach(  function(banner) { %>
+          <tr>
+            <th scope="row"> <%= banner.id %></th>
+            <td><%= banner.nombre %></td>
+            <td>
+              <img src="<%= banner.imagen_url %>" width="100" class="p-shadow-4">
+              
+            </td>
+            <td><%= banner.url %></td>
+            <td><%= banner.estado %></td>
+            <td><button>Editar</button></td>
+          </tr>
+      <% }) %>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
