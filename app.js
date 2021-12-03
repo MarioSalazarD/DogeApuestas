@@ -101,6 +101,27 @@ app.get("/login",(req, res, next) => {
     res.render("login.ejs")
   });
 
+
+app.post(("/autent"),async (req, res, next) => {
+    await queryad()
+      .then((listado) => {
+        let login = false;
+        let usuarios = listado.filter(
+          (element) => element.correo === req.body.email
+        );
+        login = usuarios.length ? usuarios[0].contrasena === req.body.password : false;
+        if (login) {
+          req.session.user = usuarios[0];
+          res.redirect("/cliente");
+        } else res.render("login.ejs");
+      })
+      .catch((error) => {
+        console.log("Ocurrio un error en el query", error);
+      });
+  });
+
+
+
 app.get('/TerminosYCondiciones',(req,res)=>{
     res.render('terminosycondiciones')
 })
