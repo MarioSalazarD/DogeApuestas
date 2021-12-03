@@ -1,4 +1,5 @@
 //Todas las dependencias incluidas
+
 const express = require('express');
 const app = express();
 const bcrypt = require('bcrypt');
@@ -10,6 +11,7 @@ const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
 const favicon = require("serve-favicon");
 const ejsLayout = require("express-ejs-layouts");
+
 
 //importar persistencias
 
@@ -69,6 +71,26 @@ const actualizaj = require("./persistencias/updatejuego")
 const actualizap = require("./persistencias/updatepartida")
 const actualizapr = require("./persistencias/updateprovincia")
 
+//Carga nuestra env if si esta en development 
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config()
+}
+
+
+
+//Inicializar Passport 
+const initializePassport = require('./public/config-pass.js')
+initializePassport(
+    passport,
+    email => users.find(user => user.email === email),
+    id => users.find(user => user.id === id)
+)
+
+//Stores users
+const users = []
+
+// app.use(cookiePerser('mi secreto'));
+
 app.use(express.static(__dirname + "/public"));
 
 //motor de View
@@ -93,9 +115,88 @@ app.use(
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get(("/"), (req,res,next) => {
-        res.render("inicio.ejs")
-    })
+
+//Set up secret key located in the .env file
+// app.use(flash())
+// app.use(session({
+//     secret: 'mi secreto',
+//     resave: true,
+//     saveUninitialized: true
+// }))
+// app.use(passport.initialize())
+// app.use(passport.session())
+
+//Sets view route for our index page
+app.get('/', forwardAuthenticated, (req, res) => {
+    res.render('index.ejs', { name: req.user.name })
+})
+
+//Sets view route for our login page
+app.get('/login', (req, res) => {
+    res.render('login.ejs')
+});
+
+//Sets view route for our register page
+app.get('/register', (req, res) => {
+    res.render('register.ejs')
+});
+
+app.get('/inicio', (req, res) => {
+    res.render('inicio.ejs')
+});
+
+//Sets view route for our juegos page
+app.get('/juegos', (req, res) => {
+    var juegos = [
+        { id : "1", nombre: "Liga de Campiones", categoria: 'Fultbol'},
+        { id : "2", nombre: "Basket1", categoria: 'Basket'},
+        { id : "3", nombre: "Las Nacionales", categoria: 'Voley'},
+        { id : "4", nombre: "Maraton", categoria: 'Tennis'}
+    ]
+    res.render('juegos.ejs', {juegos: juegos})
+});
+// crear un juego
+app.get('/juegosnuevo', (req, res) => {
+    res.render('juegosnuevo.ejs')
+});
+//editar juegos
+app.get('/juegoeditar', (req, res) => {
+    res.render('juegoeditar.ejs')
+});
+
+//lista de partidas
+app.get('/partidas', (req, res) => {
+    var partidas = [
+        { id : "1", juego: "Liga de Campiones", fecha: 'Fultbol', hora:"15:00",duracion:"30"},
+        { id : "2", juego: "Basket1", fecha: 'Basket', hora:"15:00",duracion:"30"},
+        { id : "3", juego: "Las Nacionales", fecha: 'Voley', hora:"15:00",duracion:"30"},
+        { id : "4", juego: "Maraton", fecha: 'Tennis', hora:"15:00",duracion:"30"}
+    ]
+    res.render('partidas.ejs', {partidas: partidas})
+});
+//manejo de register
+app.post('/register', async(req, res) => {
+    try {
+        const hash = await bcrypt.hash(req.body.password, 10)
+        users.push({
+            id: Date.now().toString(),
+            name: req.body.name,
+            email: req.body.email,
+            password: hash
+        })
+        res.redirect('/login')
+    } catch {
+        res.redirect('/register')
+    }
+})
+
+//Manejo de Login
+app.post('/login', passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/login',
+    failureFlash: true
+}))
+
 
 app.get("/login",(req, res, next) => {
     res.render("login.ejs")
@@ -126,17 +227,27 @@ app.get('/TerminosYCondiciones',(req,res)=>{
     res.render('terminosycondiciones')
 })
 
-app.get('/reglas',(req,res)=>{
-    res.render('reglas',{
-        rol: req.session.rol,
-        nombre: req.session.nombre})
-})
+// app.get('/reglas',(req,res)=>{
+//     res.render('reglas',{
+//         rol: req.session.rol,
+//         nombre: req.session.nombre})
+// })
 
-app.get('/nosotros',(req,res)=>{
-    res.render('nosotros',{
-        rol: req.session.rol,
-        nombre: req.session.nombre})
-})
+// app.get('/nosotros',(req,res)=>{
+//     res.render('nosotros',{
+//         rol: req.session.rol,
+//         nombre: req.session.nombre})
+// })
+
+// crear un juego
+app.get('/terminos', (req, res) => {
+    res.render('terminos.ejs')
+});
+//editar juegos
+app.get('/reglas', (req, res) => {
+    res.render('reglas.ejs')
+});
+
 
 app.get('/PoliticasPrivacidad',(req,res)=>{
     res.render('PoliticasPrivacidad',{

@@ -1,3 +1,93 @@
+/*header*/
+
+.topnav {
+    border-radius: 0;
+    background-color: #eda923;
+    padding : 6px;
+    z-index:2;
+}
+.header{
+    z-index: 1;
+}
+.navbar {        
+    background:  #eda923 !important;    
+    box-shadow: 0 5px 9px 0 rgba(0, 0, 0, 0.2);
+    height: 5.6em;
+}
+.header-titulo{
+    display: flex;    
+}
+
+.soporte-whatsapp{
+    display: flex;
+    align-items: center;
+    margin-right: 2rem;
+}
+.navbar-nav-boton{
+    display: flex;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+.color-titulo{
+    color: red;
+    font-weight: bold;
+}
+span{
+    margin-right: 1rem;
+    font-weight: bold;
+    font-size: 1.17rem;
+}
+
+.bienvenida{
+    margin-top: 5.6em;
+}
+.contenido-bienvenida{
+    background-color: #eed57b;
+    text-align: center;
+    padding: 1rem;
+}
+.negrita{
+    color: black;
+    font-weight: bold;
+}
+
+/**footer**/
+
+.footer{
+    background-color: #a09e98;
+    height: 5.2em;
+    box-shadow: 0 1px 9px 0 rgba(0, 0, 0, 0.2);
+    z-index: 10000;
+}
+
+small {
+    color:#ffffff;
+    font-family: "Roboto-Regular", sans-serif;
+    font-size: 1em;
+    margin: auto;
+}
+
+a {
+    color:#ffffff;
+    text-decoration: none;
+    margin: 0.5em;
+}
+.footer-titulo{
+    position: absolute;
+    left: 20px;
+    top: 6px;
+}
+.apuesta-gana{
+    padding-left: 6em;
+    padding-top: 0em;
+    padding-bottom: 3em;
+    font-size: 1em;
+}
+
+
+
+/*Banners*/
 .contenedor{
     padding-bottom: 2em;
 }
