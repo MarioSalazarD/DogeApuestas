@@ -157,7 +157,6 @@ app.get( ('/administrarBanners'), async (req,res,next) => {
 
 })
 
-
 app.get('/administrarBanners/new', (req, res)=>{
     if(req.session.rol=="admin"){
     res.render('newBanner',{
@@ -227,6 +226,7 @@ app.post('/administrarBanners/editar', async(req,res)=>{
     res.redirect('/administrarBanners')
 })
 
+<<<<<<< Updated upstream
 app.get('/partidas',async (req,res,next)=>{
     await queryp()
         .then( (listado) => {
@@ -239,12 +239,69 @@ app.get('/partidas',async (req,res,next)=>{
 
 
 
+=======
+/*app.get('/administrarPartidas', async (req,res)=>{
+    const juego = await db.Juego.findAll()
+    const categoria = await db.Categoriajuego.findAll()
+
+    const partidas = await db.Partida.findAll({
+        order:[
+            ['fecha','DESC'],
+            ['hora','DESC'],
+        ],
+        
+    });
+
+    let nlistapartidas = []
+    for(let partida of partidas){
+        const Juego = await partida.getJuego()
+        nlistapartidas.push({
+            id: partida.id,
+            fecha: partida.fecha,
+            hora: partida.hora,
+            duracion: partida.duracion,
+            estado: partida.estado,
+            equipo1: partida.equipoA,
+            equipo2: partida.equipoB,
+            factorA: partida.factorA,
+            factorB: partida.factorB,
+            factorEmpate: partida.factorEmpate,
+            Resultado: partida.Resultado,
+            juegoNombre: Juego.nombre
+            
+        })
+    }
+    if(req.session.rol=="admin"){
+        res.render('administrarPartidas',{
+            partidas:nlistapartidas,
+            juego:juego,
+            categoria :categoria ,
+            rol: req.session.rol,
+            nombre: req.session.nombre
+        })
+    }else{
+        res.redirect('/noAutorizado')
+    }
+})*/
+>>>>>>> Stashed changes
 app.get('/noAutorizado',(req,res)=>{
     res.render('noeresAdmin',{
         rol: req.session.rol,
             nombre: req.session.nombre
     })
 })
+
+app.get( ('/administrarpartidas'), async (req,res,next) => {
+    // Aqui debo leer la BD y mostrar los datos en la vista principal
+    await queryp()
+        .then( (listado) => {
+            res.render('partidas.ejs', {partidas: listado})
+        } )
+        .catch( (error) => {
+            console.log("Ocurrio un error en el query", error)
+        })
+})
+
 app.post('/administrarPartidas/agregar',async (req,res)=>{
     const juego = req.body.partida_JuegoID
     const categoria = req.body.partida_CategoriaID
@@ -758,16 +815,18 @@ app.get('/administrarCategorias/eliminar/:id', async (req, res) => {
 
 
 })
-
-
 //Mantenimiento Juego
-app.get(('AdministrarJuegos'),async (req,res,next)=>{
-
+app.get( ('/administrarJuegos'), async (req,res,next) => {
+    // Aqui debo leer la BD y mostrar los datos en la vista principal
+    // Voy a usar la pantilla2
+    await queryj()
+        .then( (listado) => {
+            res.render('juegos.ejs', {juegos: listado})
+        } )
+        .catch( (error) => {
+            console.log("Ocurrio un error en el query", error)
+        })
 })
-
-
-
-
 
 /*
 app.get('/AdministrarJuegos', async(req, res) => {

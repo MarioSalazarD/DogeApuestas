@@ -5,39 +5,45 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Proyecto Pagina Apuestas</title>
-	<link rel="stylesheet" href="./../public/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/styles.css">
 
 </head>
-
-<h1>Juegos</h1>
-<a href="/juegosnuevo">Registrar</a>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Categoría</th>
-      <th scope="col">Acción</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% juegos.forEach(  function(juegos) { %>
-      <tr>
-        <th scope="row"> <%= juegos.id %></th>
-        <td><%= juegos.nombre %></td>
-        <td><%= juegos.categoria %></td>
-        <td><%= juegos.accion %></td>
-        <td><a href="/juegoeditar">Editar</a></td>
-      </tr>
-  <% }) %>
-  </tbody>
-</table>
-
+<body>
+  <div class="container-titulo">
+    <h1>Juegos</h1>
+  </div>
+<div class="col-xl-12">
+  <div class="ui-g-12 content table-content">
+    <div class="contenedor">
+     <a href="/juegosnuevo"></a>Registrar
+    </div>
+<form class="cuenta-contenedor" action="autent" method="post">
+  <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Categoría</th>
+          <th scope="col">Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% juegos.forEach(  function(juegos) { %>
+          <tr>
+            <th scope="row"> <%= juegos.id %></th>
+            <td><%= juegos.nombre %></td>
+            <td><%= juegos.categoria %></td>
+            <td><%= juegos.accion %></td>
+            <td><a href="/juegoeditar">Editar</a></td>
+          </tr>
+      <% }) %>
+      </tbody>
+    </table>
+</form>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="./../public/js/bootstrap.min.js"></script>
-
 </body>
 
 </html>

@@ -4,12 +4,18 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Proyecto Pagina Apuestas</title>
-	<link rel="stylesheet" href="./../public/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
-
-<h1>Partidas</h1>
-<a href="/partidasnuevos">Registrar</a>
-
+<body>
+  <div class="container-titulo">
+    <h1>Partidas</h1>
+  </div>
+<div class="col-xl-12">
+  <div class="ui-g-12 content table-content">
+    <div class="contenedor">
+     <a href="/partidasnuevo"></a>Registrar
+    </div>
 <table class="table">
   <thead>
     <tr>
@@ -23,9 +29,9 @@
     </tr>
   </thead>
   <tbody>
-    <% juegos.forEach(  function(partidas) { %>
+    <% partidas.forEach(  function(partidas) { %>
       <tr>
-        <th scope="row"> <%= juegos.id %></th>
+        <th scope="row"> <%= partidas.id %></th>
         <td><%= juegos.juego %></td>
         <td><%= juegos.fecha %></td>
         <td><%= juegos.hora %></td>
