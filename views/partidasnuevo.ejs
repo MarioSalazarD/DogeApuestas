@@ -20,7 +20,7 @@
             <div>
                 <form action="/insertarpartida" method="POST"> 
                     <label class="label-espacio">Juego:</label>
-                    <select class="label-espacio equipo1" name = "juegoId">
+                    <select class="label-espacio equipo1" name = "jid">
                         <% juegos.forEach(  function(juego) { %>
                             <option value="<%= juego.id %>"><%= juego.nombre %><</option>
                         <% }) %>

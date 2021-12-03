@@ -254,10 +254,6 @@ app.get('/reglas', (req, res) => {
     res.render('reglas.ejs')
 });
 
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 app.get('/PoliticasPrivacidad',(req,res)=>{
     res.render('PoliticasPrivacidad',{
         rol: req.session.rol,
@@ -389,7 +385,7 @@ app.post('/insertarpartida',async (req,res,next)=>{
         req.body.facA,
         req.body.facB,
         req.body.selec,
-        req.body.juegoId
+        req.body.jid
     )
         .then( async ()  => {
             await queryp()

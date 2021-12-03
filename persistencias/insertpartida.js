@@ -13,13 +13,9 @@ const insertap = async(id, fec, hora,dur,equA,equB,facA,facB,selec,jid) => {
             equipoB: equB,
             factorA: facA,
             factorB: facB,
-<<<<<<< Updated upstream
             selector: selec,
             juegoId: jid
 
-=======
-            selector: selec
->>>>>>> Stashed changes
         })
         .then((newUsr) => {
             console.log("Registro Insertado" + newUsr)
