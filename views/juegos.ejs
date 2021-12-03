@@ -18,14 +18,13 @@
     <div class="contenedor">
      <a href="/juegosnuevo"></a>Registrar
     </div>
-<form class="cuenta-contenedor" action="autent" method="post">
+<form class="cuenta-contenedor" action="juegosnuevo" method="post">
   <table class="table">
       <thead>
         <tr>
           <th scope="col">Id</th>
           <th scope="col">Nombre</th>
           <th scope="col">Categoría</th>
-          <th scope="col">Acción</th>
         </tr>
       </thead>
       <tbody>
@@ -34,7 +33,6 @@
             <th scope="row"> <%= juegos.id %></th>
             <td><%= juegos.nombre %></td>
             <td><%= juegos.categoria %></td>
-            <td><%= juegos.accion %></td>
             <td><a href="/juegoeditar">Editar</a></td>
           </tr>
       <% }) %>

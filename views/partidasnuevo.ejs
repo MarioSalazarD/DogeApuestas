@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+    
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Proyecto Pagina Apuestas</title>
+	<link rel="stylesheet" href="./../public/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body>
+    <div class="container-titulo">
+      <h1>Administrar Partidas</h1>
+    </div>
+  <div class="col-xl-12">
+    <div class="ui-g-12 content table-content">
+      <div class="contenedor">
+       <button class="btn btn-danger btn-lg-maintenance mr-3">Guardar</button>
+      </div>
+            <div>
+                <form>
+                    <label class="label-espacio">Juego:</label>
+                    <select class="label-espacio equipo1" name = "Juego">
+                            <option>--Seleccionar--</option>
+                            <option>Fútbol</option>
+                            <option>Voley</option>
+                            <option>Basket</option>
+                            <option>Golf</option>
+                            <option>Tennis</option>
+                        </select>
+                        <label class="label-espacio">Fecha:</label>
+                        <input class="label-espacio equipo1" type="date" name="day">                  
+                    </form>
+                </div>
+                <div>
+                    <label class="label-espacio">Hora:</label>
+                    <input class="label-espacio equipo1" type="text" name="duracion">
+                    <label class="label-espacio">Estado:</label>
+                        <input class="label-espacio" name="theradio" id="radio1" type='radio' checked/>
+                        <label for="radio1"> Iniciado</label>
+                        <input class="label-espacio equipo1" name="theradio" id="radio1" type='radio' checked/>
+                        <label for="radio1"> Pendiente</label>
+                        <input class="label-espacio equipo1" name="theradio" id="radio1" type='radio' checked/>
+                        <label for="radio1"> Finalizado</label>
+                </div>
+                <div class="form-group equipo">
+                    <label class="label-espacio equipo1">Equipo 1</label>
+                    <label class="label-espacio equipo2">Equipo 2</label>
+                </div>
+                <div class="form-group label">
+                    <label class="label-espacio">Equipos:</label>
+                    <input class="label-espacio equipo1" type="text" name="equipo" id="equipo 1">
+                    <input class="label-espacio equipo1" type="text" name="equipo" id="equipo 1">
+                </div>
+                <div class="form-group label">
+                    <label class="label-espacio">Factor:</label>
+                    <input class="label-espacio equipo1" type="text" name="Factor" id="factor">
+                    <input class="label-espacio equipo1" type="text" name="Factor" id="factor">
+                </div>
+                <div class="form-group label">
+                    <label class="label-espacio">Factor Empate:</label>
+                    <input class="label-espacio equipo1" type="text" name="Factor" id="factor">
+                </div>
+                <div>
+                    <form>
+                        <label class="label-espacio">Resultado:</label>
+                        <select class="label-espacio equipo1" name = "Resultado">
+                            <option>--Seleccionar--</option>
+                            <option>Ganó Equipo A</option>
+                            <option>Ganó Equipo B</option>
+                            <option>Empate</option>
+                        </select>                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

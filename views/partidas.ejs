@@ -23,7 +23,8 @@
       <th scope="col">Juego</th>
       <th scope="col">Fecha</th>
       <th scope="col">Hora</th>
-      <th scope="col">Duración</th>
+      <th scope="col">EquipoA</th>
+      <th scope="col">EquipoB</th>
       <th scope="col">Estado</th>
       <th scope="col">Acción</th>
     </tr>
@@ -32,12 +33,13 @@
     <% partidas.forEach(  function(partidas) { %>
       <tr>
         <th scope="row"> <%= partidas.id %></th>
-        <td><%= juegos.juego %></td>
-        <td><%= juegos.fecha %></td>
-        <td><%= juegos.hora %></td>
-        <td><%= juegos.duracion %></td>
-        <td><%= juegos.estado %></td>
-        <td><%= juegos.accion %></td>
+        <td><%= partidas.juego %></td>
+        <td><%= partidas.fecha %></td>
+        <td><%= partidas.hora %></td>
+        <td><%= partidas.equipoA %></td>
+        <td><%= partidas.equipoB %></td>
+        <td><%= partidas.estado %></td>
+        <td><%= partidas.accion %></td>
         <td><a href="/partidaseditar">Editar</a></td>
       </tr>
   <% }) %>
@@ -46,7 +48,7 @@
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="./../public/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 
 </body>
 
