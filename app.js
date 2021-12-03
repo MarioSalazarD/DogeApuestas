@@ -148,6 +148,42 @@ app.get('/banners', async (req, res) => {
     // // res.render('banner.ejs', {banners: banners})
 });
 
+//Sets view route for our juegos page
+app.get('/juegos', (req, res) => {
+    var juegos = [
+        { id : "1", nombre: "Liga de Campiones", categoria: 'Fultbol'},
+        { id : "2", nombre: "Basket1", categoria: 'Basket'},
+        { id : "3", nombre: "Las Nacionales", categoria: 'Voley'},
+        { id : "4", nombre: "Maraton", categoria: 'Tennis'}
+    ]
+    res.render('juegos.ejs', {juegos: juegos})
+});
+// crear un juego
+app.get('/juegosnuevo', (req, res) => {
+    res.render('juegosnuevo.ejs')
+});
+//editar juegos
+app.get('/juegoeditar', (req, res) => {
+    res.render('juegoeditar.ejs')
+});
+/*      <th scope="col">Id</th>
+      <th scope="col">Juego</th>
+      <th scope="col">Fecha</th>
+      <th scope="col">Hora</th>
+      <th scope="col">Duración</th>
+      <th scope="col">Estado</th>
+*/
+
+//lista de partidas
+app.get('/partidas', (req, res) => {
+    var partidas = [
+        { id : "1", juego: "Liga de Campiones", fecha: 'Fultbol', hora:"15:00",duracion:"30"},
+        { id : "2", juego: "Basket1", fecha: 'Basket', hora:"15:00",duracion:"30"},
+        { id : "3", juego: "Las Nacionales", fecha: 'Voley', hora:"15:00",duracion:"30"},
+        { id : "4", juego: "Maraton", fecha: 'Tennis', hora:"15:00",duracion:"30"}
+    ]
+    res.render('partidas.ejs', {partidas: partidas})
+});
 //manejo de register
 app.post('/register', async(req, res) => {
     try {

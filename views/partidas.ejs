@@ -1,41 +1,38 @@
 <!DOCTYPE html>
-<html lang="es">
-    
+<html lang="es">   
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Proyecto Pagina Apuestas</title>
 	<link rel="stylesheet" href="./../public/css/bootstrap.min.css">
-
 </head>
 
-
-<h1>Banners</h1>
-
-<body>
-
-<button>Registrar</button>
+<h1>Partidas</h1>
+<a href="/partidasnuevos">Registrar</a>
 
 <table class="table">
   <thead>
     <tr>
       <th scope="col">Id</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Imagen</th>
-      <th scope="col">Url</th>
+      <th scope="col">Juego</th>
+      <th scope="col">Fecha</th>
+      <th scope="col">Hora</th>
+      <th scope="col">Duración</th>
       <th scope="col">Estado</th>
-      <th scope="col">Accion</th>
+      <th scope="col">Acción</th>
     </tr>
   </thead>
   <tbody>
-    <% banners.forEach(  function(banner) { %>
+    <% juegos.forEach(  function(partidas) { %>
       <tr>
-        <th scope="row"> <%= banner.id %></th>
-        <td><%= banner.nombre %></td>
-        <td><%= banner.imagen %></td>
-        <td><%= banner.url %></td>
-        <td><%= banner.estado %></td>
-        <td><button>Editar</button></td>
+        <th scope="row"> <%= juegos.id %></th>
+        <td><%= juegos.juego %></td>
+        <td><%= juegos.fecha %></td>
+        <td><%= juegos.hora %></td>
+        <td><%= juegos.duracion %></td>
+        <td><%= juegos.estado %></td>
+        <td><%= juegos.accion %></td>
+        <td><a href="/partidaseditar">Editar</a></td>
       </tr>
   <% }) %>
   </tbody>
