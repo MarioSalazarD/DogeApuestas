@@ -8,6 +8,12 @@ const bcrypt = require('bcrypt')
 const passport = require('passport')
 const flash = require('express-flash')
 const session = require('express-session')
+const cookiePArser = require('cookie-parser')
+
+
+
+
+
 const banner = require("./models/banner")
 //importar persistencias
 
@@ -89,18 +95,21 @@ initializePassport(
 //Stores users
 const users = []
 
+app.use(cookiePerser('mi secreto'));
+
 //Sets ejs as view engine
 app.set('view-engine', 'ejs')
-app.use(express.urlencoded({ extended: false }))
+
+app.use(express.urlencoded({ extended: true }))
 
 app.use(express.static(__dirname + "../public"));
 
 //Set up secret key located in the .env file
 app.use(flash())
 app.use(session({
-    secret: 'somevalue',
-    resave: false,
-    saveUninitialized: false
+    secret: 'mi secreto',
+    resave: true,
+    saveUninitialized: true
 }))
 app.use(passport.initialize())
 app.use(passport.session())
@@ -750,6 +759,21 @@ app.get('/partidas/fechasantiguas', async(req,res) => {
 
 //ADMINISTRAR CATEGORÍAS - PRINCIPAL
 
+app.get(('/administrarCategorias'),async (req,res,next)=>{
+    await querycat()
+        .then((listado)=>{
+            res.render('categorialista.ejs',{categoriajuegos:listado})
+        })
+        .catch((error)=>{
+            console.log("ocurrio un error en el query",error)
+        })
+})
+
+
+
+
+
+/*
 app.get('/administrarCategorias', async (req, res) => {
 
     if(req.session.rol=="admin"){
@@ -769,7 +793,7 @@ app.get('/administrarCategorias', async (req, res) => {
     else{
         res.redirect('/noAutorizado')
     }
-})
+})*/
 
 //NUEVA CATEGORÍA
 /*
@@ -854,7 +878,7 @@ app.get('/administrarCategorias/eliminar/:id', async (req, res) => {
 
 //Mantenimiento Juego
 app.get(('AdministrarJuegos'),async (req,res,next)=>{
-    
+
 })
 
 
@@ -1142,6 +1166,7 @@ app.post('/registro1', async(req, res) => {
 })
 
 const registD=require("./persistencias/insertdepartamento")
+const { Cookie } = require('express-session')
 
 app.use("/resgistro2",registD)
 
