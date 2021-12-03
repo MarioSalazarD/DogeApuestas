@@ -195,7 +195,7 @@ app.post(("/login/autentA"),async (req, res, next) => {
         login = usuarios.length ? usuarios[0].contrasena === req.body.password : false;
         if (login) {
           req.session.user = usuarios[0];
-          res.redirect("index.ejs");
+          res.redirect("index2.ejs");
         } else res.render("loginA.ejs");
       })
       .catch((error) => {
@@ -213,7 +213,7 @@ app.post(("/login/autentC"),async (req, res, next) => {
         login = usuarios.length ? usuarios[0].contrasena === req.body.password : false;
         if (login) {
           req.session.user = usuarios[0];
-          res.redirect("index.ejs");
+          res.redirect("index2.ejs");
         } else res.render("loginB.ejs");
       })
       .catch((error) => {
