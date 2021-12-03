@@ -116,11 +116,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 
-
-
+app.get('/inicio', (req, res) => {
+    res.render('inicio.ejs')
+});
 
 app.get('/', (req, res) => {
-    res.render('inicio.ejs')
+    res.render('index.ejs')
 });
 
 //Sets view route for our juegos page
