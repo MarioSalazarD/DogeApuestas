@@ -10,6 +10,7 @@ const flash = require('express-flash')
 const session = require('express-session')
 const banner = require("./models/banner")
 //importar persistencias
+
 //delete
 const eliminaA = require("./persistencias/deleteadministrador")
 const eliminab = require("./persistencias/deletebanner")
@@ -65,11 +66,6 @@ const actualizah = require("./persistencias/updatehojapuestas")
 const actualizaj = require("./persistencias/updatejuego")
 const actualizap = require("./persistencias/updatepartida")
 const actualizapr = require("./persistencias/updateprovincia")
-
-
-
-
-
 
 
 
@@ -244,7 +240,7 @@ app.get('/PoliticasPrivacidad',(req,res)=>{
 app.get( ('/administrarBanners'), async (req,res,next) => {
     // Aqui debo leer la BD y mostrar los datos en la vista principal
     // Voy a usar la pantilla2
-    await query()
+    await queryb()
         .then( (listado) => {
             res.render('banner.ejs', {banners: listado})
         } )
@@ -856,7 +852,16 @@ app.get('/administrarCategorias/eliminar/:id', async (req, res) => {
 })
 
 
-//Mantenimiento Juego 
+//Mantenimiento Juego
+app.get(('AdministrarJuegos'),async (req,res,next)=>{
+    
+})
+
+
+
+
+
+/*
 app.get('/AdministrarJuegos', async(req, res) => {
     const juegos = await db.Juego.findAll({
         order :[
@@ -876,7 +881,7 @@ app.get('/AdministrarJuegos', async(req, res) => {
         res.redirect('/noAutorizado')
     }
 })
-
+*/
 app.post('/AdministrarJuegos/agregar', async(req, res) => {
     const jnombre = req.body.nuevonombre1
     const jcategoria = req.body.nuevacategoria1
