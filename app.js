@@ -492,7 +492,7 @@ app.get('/partidas', async(req,res)=>{
         categorias: categorias,
     })
 })
-
+/*
 app.get('/partidas', async(req,res)=>{
     const rol = req.session.rol    
     const nombre = req.session.nombre
@@ -539,7 +539,7 @@ app.get('/partidas', async(req,res)=>{
         categorias: categorias
     })
     
-})
+})*/
 app.get('/partidas/filtro/:id', async(req,res)=>{
     const categoriaid = req.params.id
 
