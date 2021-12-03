@@ -1,55 +1,122 @@
-<!DOCTYPE html>
-<html lang="es">
-    
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Proyecto Pagina Apuestas</title>
-	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="/css/styles.css">
+  <title>Tim-Bear</title>
+  <meta charset="utf-8" />
+  <link rel="shortcut icon" href="/imagenes/logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 </head>
+<body class="">
+  <h2 class="container">Lista de Clientes Filtrada</h2>
+  <form method="post" action="AdministrarClientes/filtrar">
+  <div class="table-responsive container-fluid">
+      <a class="link" href="/AdministrarClientes"> <-Regresar</a>
 
-<body>
+      <% if(clientes.length>0){ %>
+      <div class="input-group rounded mb-3 mt-4">
+          <h3>Se encontro las siguientes coincidencias.</h3>
+      </div>
+      <table class="table container table-hover">
+          <thead>
+              <tr>
+                  <th>Id Cliente</th>
+                  <th>Nombre Completo</th>
+                  <th>DNI</th>
+                  <th>Correo Electrónico</th>
+                  <th>Número telefonico</th>
+                  <th>Acciones</th>
+              </tr>
+          </thead>
+          <tbody>
+              
+                  for(var i = 0;i < clientes.length;i++) { 
+                  
+                  <tr>
+                      <td><%= clientes[i].id %></td>
+                      <td><%= clientes[i].nombres %> <%= clientes[i].apellidos %></td>
+                      <td><%= clientes[i].dni %></td>
+                      <td><%= clientes[i].correo %></td>
+                      <td><%= clientes[i].telefono %></td>    
+                      <td>
+                          <button type="button" class="mt-1 mx-1 btn btn-primary" data-bs-toggle="modal" data-bs-target="#editar_<%=i%>">Editar</button>
+                          <div class="modal fade" id="editar_<%=i%>" tabindex="-1" aria-hidden="true" aria-labelledby="modalTitle">
+                              <div class="modal-dialog">
+                                  <div class="modal-content">
+                                      <form class="form" method="post" action="/AdministrarClientes/editar">
+                                          <input type="hidden" name="cliente_id" value="<%= clientes[i].id %>"> 
+                                          <div class="modal-header">
+                                              <h4 class="modal-title" id="exampleModalLabel" >Editar Cliente</h4>
+                                              <button type="button" class="btn-close" data-bs-dismiss="modal"class="btn-close" aria-hidden="true" aria-label="Close"></button>
+                                          </div>
+                                          <div class="modal-body">
+                                              <div class="row">
+                                                  <div class="col">
+                                                      <div class="form-group ">
+                                                          <div class="form-group">
+                                                              <label class="form-label">Nombre Completo:</label>
+                                                              <label class="form-label" ><%= clientes[i].nombres%> <%= clientes[i].apellidos%></label>
+                                                          </div>                                                                
+                                                      </div>
+                                                      <div class="form-group">
+                                                          <label class="form-label">DNI:</label>
+                                                          <label class="form-label" ><%= clientes[i].dni%></label>
+                                                      </div>
+                                                      <div class="form-group">
+                                                          <label class="form-label">Correo electrónico:</label>
+                                                          <label class="form-label" ><%= clientes[i].correo%></label>
+                                                      </div>
+                                                      <div class="form-group">
+                                                          <label class="form-label">Número telefonico:</label>
+                                                          <label class="form-label" ><%= clientes[i].numero%></label>
+                                                      </div>
+                                                      <div class="form-group mt-3">
+                                                          <label  for="input_starttime" class="form-label">Estado:</label>
+                                                          <select name="cliente_Estado2" class="form-select ">
+                                                              <option >---Seleccione---</option>
+                                                              <option>Pendiente de Validación</option>
+                                                              <option>Validado</option>
+                                                              <option>Dado de Baja</option>
+                                                          </select>
+                                                      </div>   
+                                                      <div class="form-group">
+                                                          <label class="form-label">Dirección:</label>
+                                                          <label class="form-label" ><%= clientes[i].direccion%></label>
+                                                      </div>
+                                                      <div class="form-group">
+                                                          <label class="form-label">Distrito:</label>
+                                                          <label class="form-label" ><%= clientes[i].distrito%></label>
+                                                      </div>
+                                                      <div class="form-group">
+                                                          <label class="form-label">Provincia:</label>
+                                                          <label class="form-label" ><%= clientes[i].provincia%></label>
+                                                      </div>
+                                                      <div class="form-group">
+                                                          <label class="form-label">Departamento:</label>
+                                                          <label class="form-label" ><%= clientes[i].departamento%></label>
+                                                      </div>                                                        
+                                                      <div class="form-group mt-3">
+                                                          <label class="form-label">PEP:</label>
+                                                          <label class="form-label" ><%= clientes[i].pep%></label>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="modal-footer">   
+                                                  <button type="submit" class="btn btn-primary">Guardar</button>
+                                          </div>
+                                      </form>
+                                  </div>
+                              </div>
+                          </div>
+                          
+                      </td>
+                  </tr>
+              <%}} }%>
+          </tbody>
+      </table>
 
-  <div class="container-titulo">
-    <h1>Clientes</h1>
-  </div>
-<div class="col-xl-12">
-  <div class="ui-g-12 content table-content">
-    <div class="contenedor">
-     <button class="btn btn-danger btn-lg-maintenance mr-3">Registrar</button>
-    </div>
-
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Id</th>
-          <th scope="col">Nombre</th>
-          <th scope="col">Apellido</th>
-          <th scope="col">Correo</th>
-          <th scope="col">DNI</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% clientes.forEach(  function(cliente) { %>
-          <tr>
-            <th scope="row"> <%= cliente.id %></th>
-            <td><%= cliente.nombres %></td>
-            <td><%= cliente.apellidos %></td>
-            <td><%= cliente.correo %></td>
-            <td><button>Editar</button></td>
-          </tr>
-      <% }) %>
-      </tbody>
-    </table>
-
-  </div>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="/js/bootstrap.min.js"></script>
+      </form>
+  </div>   
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 
 </body>
-
 </html>

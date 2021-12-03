@@ -1108,7 +1108,7 @@ app.get('/administrarJuegos/eliminar/:codigo',async(req,res)=>{
 app.get(('/admin/administrarClientes'), async (req,res,next)=>{
     await querycli()
         .then ((listado)=>{
-            res.render('clientes.ejs',{clientes:listado})
+            res.render('clientesfiltro.ejs',{clientes:listado})
         })
         .catch((error)=>{
             console.log('Ocurrio un error en el query',error)
