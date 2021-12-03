@@ -316,7 +316,6 @@ app.get('/reglas', (req, res) => {
     res.render('reglas.ejs')
 });
 
-
 app.get('/PoliticasPrivacidad',(req,res)=>{
     res.render('PoliticasPrivacidad',{
         rol: req.session.rol,
@@ -423,6 +422,8 @@ app.get('/noAutorizado',(req,res)=>{
     })
 })
 
+//---------------Jemima----------------------------------------
+
 app.get('/partidas',async (req,res,next)=>{
     await queryp()
         .then( (listado) => {
@@ -434,6 +435,53 @@ app.get('/partidas',async (req,res,next)=>{
 })
 
 
+//insertar partida
+app.post('/insertarpartida',async (req,res,next)=>{
+    await insertp(
+        req.body.id, 
+        req.body.day, 
+        req.body.hora,
+        req.body.dur,
+        req.body.equA,
+        req.body.equB,
+        req.body.facA,
+        req.body.facB,
+        req.body.selec,
+        req.body.jid
+    )
+        .then( async ()  => {
+            await queryp()
+            .then((listado) => {
+                res.render('partidas.ejs', {partidas: listado})
+            })
+            .catch((error) => {
+                console.log('Ocurrio un error', error);
+            })
+        } )
+        .catch( (error) => {
+            console.log("Ocurrio un error en el query", error)
+        })
+})
+
+
+//Para el combobox
+app.get('/partidasnuevo',async (req,res,next)=>{
+    await queryj()
+        .then( (listado) => {
+            res.render('partidasnuevo.ejs', {juegos: listado})
+        } )
+        .catch( (error) => {
+            console.log("Ocurrio un error en el query", error)
+        })
+})
+
+app.get('/nosotros',(req,res)=>{
+    res.render('nosotros',{
+        rol: req.session.rol,
+        nombre: req.session.nombre})
+})
+
+//---------------------------------------------------------------
 
 app.get('/noAutorizado',(req,res)=>{
     res.render('noeresAdmin',{
