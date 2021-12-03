@@ -9,7 +9,7 @@ const passport = require('passport')
 const flash = require('express-flash')
 const session = require('express-session')
 
-
+const query = require("../persistencia/selectallbanner")
 
 //Carga nuestra env if si esta en development 
 if (process.env.NODE_ENV !== 'production') {
@@ -61,14 +61,22 @@ app.get('/register', (req, res) => {
 });
 
 //Sets view route for our banner page
-app.get('/banners', (req, res) => {
-    var banners = [
-        { id : "1", nombre: "Banner Fultbol", imagen: '', url: 'inicio/banners', estado: 'Activo'},
-        { id : "2", nombre: "Banner Casino", imagen: '', url: 'inicio/banners', estado: 'Inactivo'},
-        { id : "3", nombre: "Banner Carrera Caballos", imagen: '', url: 'inicio/banners', estado: 'Activo'},
-        { id : "4", nombre: "Banner Poker", imagen: '', url: 'inicio/banners', estado: 'Inactivo'}
-    ]
-    res.render('banner.ejs', {banners: banners})
+app.get('/banners', async (req, res) => {
+    
+    await query()
+    .then((listado) =>{
+        res.render('banner.ejs', {banners: listado})
+    })
+    .catch((error) => {
+        console.log("Ocurrio error en query", error);
+    })
+    // var banners = [
+    //     { id : "1", nombre: "Banner Fultbol", imagen: '', url: 'inicio/banners', estado: 'Activo'},
+    //     { id : "2", nombre: "Banner Casino", imagen: '', url: 'inicio/banners', estado: 'Inactivo'},
+    //     { id : "3", nombre: "Banner Carrera Caballos", imagen: '', url: 'inicio/banners', estado: 'Activo'},
+    //     { id : "4", nombre: "Banner Poker", imagen: '', url: 'inicio/banners', estado: 'Inactivo'}
+    // ]
+    // res.render('banner.ejs', {banners: banners})
 });
 
 //manejo de register
