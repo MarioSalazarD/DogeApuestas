@@ -15,33 +15,37 @@
   <div class="col-xl-12">
     <div class="ui-g-12 content table-content">
       <div class="contenedor">
-       <button class="btn btn-danger btn-lg-maintenance mr-3">Guardar</button>
+       
       </div>
             <div>
-                <form>
+                <form action="/insertarpartida" method="POST"> 
                     <label class="label-espacio">Juego:</label>
-                    <select class="label-espacio equipo1" name = "Juego">
-                            <option>--Seleccionar--</option>
-                            <option>Fútbol</option>
-                            <option>Voley</option>
-                            <option>Basket</option>
-                            <option>Golf</option>
-                            <option>Tennis</option>
+                    <select class="label-espacio equipo1" name = "jid">
+                        <% juegos.forEach(  function(juego) { %>
+                            <option value="<%= juego.id %>"><%= juego.nombre %><</option>
+                        <% }) %>
+                        
+                        <!-- <option value="0">--Seleccionar--</option>
+                        <option value="1">Fútbol</option>
+                        <option value="2">Voley</option>
+                        <option value="3">Basket</option>
+                        <option value="4">Golf</option>
+                        <option value="5">Tennis</option> -->
+
                         </select>
                         <label class="label-espacio">Fecha:</label>
                         <input class="label-espacio equipo1" type="date" name="day">                  
-                    </form>
-                </div>
-                <div>
                     <label class="label-espacio">Hora:</label>
-                    <input class="label-espacio equipo1" type="text" name="duracion">
-                    <label class="label-espacio">Estado:</label>
+                    <input class="label-espacio equipo1" type="text" name="hora">
+                    <label class="label-espacio">Duracion:</label>
+                    <input class="label-espacio equipo1" type="text" name="dur">
+                    <!-- <label class="label-espacio">Estado:</label>
                         <input class="label-espacio" name="theradio" id="radio1" type='radio' checked/>
                         <label for="radio1"> Iniciado</label>
                         <input class="label-espacio equipo1" name="theradio" id="radio1" type='radio' checked/>
                         <label for="radio1"> Pendiente</label>
                         <input class="label-espacio equipo1" name="theradio" id="radio1" type='radio' checked/>
-                        <label for="radio1"> Finalizado</label>
+                        <label for="radio1"> Finalizado</label> -->
                 </div>
                 <div class="form-group equipo">
                     <label class="label-espacio equipo1">Equipo 1</label>
@@ -49,30 +53,30 @@
                 </div>
                 <div class="form-group label">
                     <label class="label-espacio">Equipos:</label>
-                    <input class="label-espacio equipo1" type="text" name="equipo" id="equipo 1">
-                    <input class="label-espacio equipo1" type="text" name="equipo" id="equipo 1">
+                    <input class="label-espacio equipo1" type="text" name="equA" id="equA">
+                    <input class="label-espacio equipo1" type="text" name="equB" id="equB">
                 </div>
                 <div class="form-group label">
                     <label class="label-espacio">Factor:</label>
-                    <input class="label-espacio equipo1" type="text" name="Factor" id="factor">
-                    <input class="label-espacio equipo1" type="text" name="Factor" id="factor">
+                    <input class="label-espacio equipo1" type="text" name="facA" id="facA">
+                    <input class="label-espacio equipo1" type="text" name="facB" id="facB">
                 </div>
-                <div class="form-group label">
+                <!-- <div class="form-group label">
                     <label class="label-espacio">Factor Empate:</label>
                     <input class="label-espacio equipo1" type="text" name="Factor" id="factor">
-                </div>
+                </div> -->
                 <div>
-                    <form>
                         <label class="label-espacio">Resultado:</label>
-                        <select class="label-espacio equipo1" name = "Resultado">
+                        <select class="label-espacio equipo1" name = "selec">
                             <option>--Seleccionar--</option>
-                            <option>Ganó Equipo A</option>
-                            <option>Ganó Equipo B</option>
-                            <option>Empate</option>
+                            <option value="gano a">Ganó Equipo A</option>
+                            <option value="gano b">Ganó Equipo B</option>
+                            <option value="empate">Empate</option>
                         </select>                        
-                    </form>
                 </div>
             </div>
+            <button type="submit" class="btn btn-primary" tabindex="5">Guardar</button>
+        </form>
         </div>
     </div>
 </div>

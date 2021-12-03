@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/styles.css">
     <title>Document</title>
 </head>
 <body>
@@ -14,8 +16,8 @@
               <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Monto</th>
-                <th scope="col">GananciaA</th>
-                <th scope="col">GananciaB</th>
+                <th scope="col">Ganancia</th>
+                <th scope="col">Partida id</th>
                 <th scope="col">Ganador</th>
               </tr>
             </thead>
@@ -24,6 +26,8 @@
                 <tr>
                   <th scope="row"> <%= hoja.id %></th>
                   <td><%= hoja.monto %></td>
+                  <td><%= hoja.ganancia%></td>
+                  <td><%= hoja.PartidaId%></td>
                   <td><%= hoja.ganador %></td>
                   <td><button>Editar</button></td>
                 </tr>
@@ -41,6 +45,8 @@
                 <th scope="col">Id</th>
                 <th scope="col">FactorA</th>
                 <th scope="col">FactorB</th>
+                <th scope="col">EquipoA</th>
+                <th scope="col">EquipoB</th>
               </tr>
             </thead>
             <tbody>
@@ -49,6 +55,8 @@
                   <th scope="row"> <%= partida.id %></th>
                   <td><%= partida.factorA %></td>
                   <td><%= partida.factorB %></td>
+                  <td><%= partida.equipoA %></td>
+                  <td><%= partida.equipoB %></td>
                   <td><button>Editar</button></td>
                 </tr>
             <% }) %>
