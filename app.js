@@ -64,6 +64,7 @@ const actualizaj = require("./persistencias/updatejuego")
 const actualizap = require("./persistencias/updatepartida")
 const actualizapr = require("./persistencias/updateprovincia")
 
+app.use(express.static(__dirname + "/public"));
 
 app.set('view-engine', 'ejs')
 
@@ -809,21 +810,15 @@ app.get('/administrarJuegos/eliminar/:codigo',async(req,res)=>{
 //fin mantenimiento juego
 
 //Mantenimiento de clientes
-app.get('/AdministrarClientes', async (req,res)=>{
-    const clientes = await db.Cliente.findAll({
-        order :[
-            ['id', 'ASC']
-        ]
-    });
-    if(req.session.rol=="admin"){
-    res.render('administrarClientes',{
-        clientes : clientes,
-        rol : req.session.rol,
-        nombre: req.session.nombre
-    })
-    }else{
-        res.redirect('/noAutorizado')
-    }
+app.get(('/admin/administrarClientes'), async (req,res,next)=>{
+    await querycli()
+        .then ((listado)=>{
+            res.render('clientes.ejs',{clientes:listado})
+        })
+        .catch((error)=>{
+            console.log('Ocurrio un error en el query',error)
+        })
+
 })
 
 app.post('/AdministrarClientes/editar',async(req,res)=>{
