@@ -33,6 +33,8 @@ const users = []
 app.set('view-engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
 
+app.use(express.static(__dirname + "../public"));
+
 //Set up secret key located in the .env file
 app.use(flash())
 app.use(session({
@@ -58,6 +60,16 @@ app.get('/register', (req, res) => {
     res.render('register.ejs')
 });
 
+//Sets view route for our banner page
+app.get('/banners', (req, res) => {
+    var banners = [
+        { id : "1", nombre: "Banner Fultbol", imagen: '', url: 'inicio/banners', estado: 'Activo'},
+        { id : "2", nombre: "Banner Casino", imagen: '', url: 'inicio/banners', estado: 'Inactivo'},
+        { id : "3", nombre: "Banner Carrera Caballos", imagen: '', url: 'inicio/banners', estado: 'Activo'},
+        { id : "4", nombre: "Banner Poker", imagen: '', url: 'inicio/banners', estado: 'Inactivo'}
+    ]
+    res.render('banner.ejs', {banners: banners})
+});
 
 //manejo de register
 app.post('/register', async(req, res) => {
