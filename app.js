@@ -227,8 +227,14 @@ app.post('/administrarBanners/editar', async(req,res)=>{
     res.redirect('/administrarBanners')
 })
 
-app.get('/partidas',(req,res)=>{
-
+app.get('/partidas',async (req,res,next)=>{
+    await queryp()
+        .then( (listado) => {
+            res.render('partidas.ejs', {partidas: listado})
+        } )
+        .catch( (error) => {
+            console.log("Ocurrio un error en el query", error)
+        })
 })
 
 
