@@ -6,6 +6,15 @@
     padding-left: 1em;
     padding-right: 1em;
 }
+.img{
+    margin: 0 auto;
+}
+.subt{
+    max-width: 100%!important;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
 
 .container-titulo{
     max-width: 100%!important;
@@ -13,4 +22,22 @@
     align-content: center;
     justify-content: center;
     background: #eda923;
+}
+.cuenta-box{
+    max-width: 100%!important;
+    align-content: center;
+    justify-content: center;
+}
+.login{
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 10px 0px;
+}
+
+.bodyl {
+    background: rgb(160, 160, 160);
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
 }
