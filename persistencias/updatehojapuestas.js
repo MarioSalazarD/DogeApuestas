@@ -4,7 +4,7 @@ const Op = Sequelize.Op;
 const models = require("../models");
 const usr = models.Hojapuestas;
 
-const actualizah = async(cod, mont, gan, gana) => {
+const actualizah = async(id, mont, gan, gana) => {
     console.log("==> INicio de update")
 
     return usr.update({
@@ -13,7 +13,7 @@ const actualizah = async(cod, mont, gan, gana) => {
             ganador: gana
         }, {
             where: {
-                codigo: cod
+                id: id
             }
         })
         .then((resultado) => {

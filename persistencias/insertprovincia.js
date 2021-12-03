@@ -1,11 +1,11 @@
 const models = require("../models");
 const usr = models.Provincia;
 
-const insertap = async(cod, nom, eda) => {
+const insertap = async(id, nom) => {
     console.log("==> Inicio de insert")
 
     return usr.create({
-            codigo: cod,
+            id: id,
             nombre: nom,
         })
         .then((newUsr) => {

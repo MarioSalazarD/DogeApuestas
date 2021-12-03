@@ -1,11 +1,11 @@
 const models = require("../models");
 const usr = models.Distrito;
 
-const insertadis = async(cod, nom, eda) => {
+const insertadis = async(id, nom) => {
     console.log("==> Inicio de insert")
 
     return usr.create({
-            codigo: cod,
+            id: id,
             nombre: nom,
         })
         .then((newUsr) => {

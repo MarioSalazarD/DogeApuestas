@@ -1,11 +1,11 @@
 const models = require("../models");
 const usr = models.Juego;
 
-const insertaj = async(cod, nom, eda) => {
+const insertaj = async(id, nom) => {
     console.log("==> Inicio de insert")
 
     return usr.create({
-            codigo: cod,
+            id: id,
             nombre: nom,
         })
         .then((newUsr) => {

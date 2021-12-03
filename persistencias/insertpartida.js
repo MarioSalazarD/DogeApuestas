@@ -1,11 +1,11 @@
 const models = require("../models");
 const usr = models.Partida;
 
-const insertap = async(cod, nom, eda) => {
+const insertap = async(id, fec, hora,dur,equA,equB,facA,facB,selec) => {
     console.log("==> Inicio de insert")
 
     return usr.create({
-            codigo: cod,
+            id: id,
             fecha: fec,
             hora: hora,
             duracion: dur,

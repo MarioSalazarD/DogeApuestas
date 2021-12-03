@@ -4,14 +4,14 @@ const Op = Sequelize.Op;
 const models = require("../models");
 const usr = models.CategoriaJuego;
 
-const actualizacat = async(cod, nom) => {
+const actualizacat = async(id, nom) => {
     console.log("==> INicio de update")
 
     return usr.update({
             nombre: nom
         }, {
             where: {
-                codigo: cod
+                id: id
             }
         })
         .then((resultado) => {

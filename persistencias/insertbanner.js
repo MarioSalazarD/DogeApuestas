@@ -1,11 +1,11 @@
 const models = require("../models");
 const usr = models.Banner;
 
-const insertaba = async(cod, nom, eda) => {
+const insertaba = async(id, nom, img, url, est) => {
     console.log("==> Inicio de insert")
 
     return usr.create({
-            codigo: cod,
+            id: id,
             nombre: nom,
             imagenurl: img,
             url: url,

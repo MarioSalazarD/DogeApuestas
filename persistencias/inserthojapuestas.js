@@ -1,11 +1,11 @@
 const models = require("../models");
 const usr = models.Hojapuesta;
 
-const insertah = async(cod, nom, eda) => {
+const insertah = async(id, mont, gan, gana) => {
     console.log("==> Inicio de insert")
 
     return usr.create({
-            codigo: cod,
+            id: id,
             monto: mont,
             ganancia: gan,
             ganador: gana,

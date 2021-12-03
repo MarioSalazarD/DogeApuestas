@@ -4,17 +4,16 @@ const Op = Sequelize.Op;
 const models = require("../models");
 const usr = models.Provincia;
 
-const actualizapr = async (cod, nom, eda) => {
+const actualizapr = async (id, nom) => {
     console.log("==> INicio de update")
 
     return usr.update(
         {
-            nombre : nom,
-            edad : eda
+            nombre : nom
         },
         {
             where : {
-                codigo : cod
+                id: id
             }
         }
     )

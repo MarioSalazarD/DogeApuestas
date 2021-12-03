@@ -4,17 +4,23 @@ const Op = Sequelize.Op;
 const models = require("../models");
 const usr = models.Partida;
 
-const actualizap = async (cod, nom, eda) => {
+const actualizap = async (id, fec, hora,dur,equA,equB,facA,facB,selec) => {
     console.log("==> INicio de update")
 
     return usr.update(
         {
-            nombre : nom,
-            edad : eda
+            fecha: fec,
+            hora: hora,
+            duracion: dur,
+            equipoA: equA,
+            equipoB: equB,
+            factorA: facA,
+            factorB: facB,
+            selector: selec,
         },
         {
             where : {
-                codigo : cod
+                id: id
             }
         }
     )

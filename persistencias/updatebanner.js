@@ -4,7 +4,7 @@ const Op = Sequelize.Op;
 const models = require("../models");
 const usr = models.Banner;
 
-const actualizab = async(cod, nom, img, url, est) => {
+const actualizab = async(id, nom, img, url, est) => {
     console.log("==> INicio de update")
 
     return usr.update({
@@ -14,7 +14,7 @@ const actualizab = async(cod, nom, img, url, est) => {
             estado: est
         }, {
             where: {
-                codigo: cod
+                id: id
             }
         })
         .then((resultado) => {

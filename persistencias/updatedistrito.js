@@ -4,14 +4,14 @@ const Op = Sequelize.Op;
 const models = require("../models");
 const usr = models.Distrito;
 
-const actualizadist = async(cod, nom, eda) => {
+const actualizadist = async(id, nom) => {
     console.log("==> INicio de update")
 
     return usr.update({
             nombre: nom,
         }, {
             where: {
-                codigo: cod
+                id: id
             }
         })
         .then((resultado) => {
