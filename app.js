@@ -5,6 +5,11 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 const flash = require('express-flash');
 const session = require('express-session');
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const morgan = require("morgan");
+const favicon = require("serve-favicon");
+const ejsLayout = require("express-ejs-layouts");
 
 //importar persistencias
 
@@ -66,7 +71,35 @@ const actualizapr = require("./persistencias/updateprovincia")
 
 app.use(express.static(__dirname + "/public"));
 
+//motor de View
+app.set("view cache", "false");
 app.set('view-engine', 'ejs')
+app.set("views", __dirname + "/views");
+
+// Middleware
+app.use(favicon(__dirname + "/public/favicon.ico"));
+app.use(morgan("combined"));
+
+app.use(cookieParser());
+app.use(
+  session({
+    secret: "frase clave",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false },
+  })
+);
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+app.get(("/"), (req,res,next) => {
+        res.render("inicio.ejs")
+    })
+
+app.get("/login",(req, res, next) => {
+    res.render("login.ejs")
+  });
 
 app.get('/TerminosYCondiciones',(req,res)=>{
     res.render('terminosycondiciones')
@@ -851,11 +884,11 @@ app.post('/AdministrarClientes/editar',async(req,res)=>{
     await cliente.save()
     res.redirect('/administrarClientes')
 })
-
+const Cliente = require("./models/cliente");
 app.get('/AdministrarClientes/filtrar', async(req, res) => {
     const filtroA = req.query.filtro;
     console.log(filtroA);
-    const clientes = await db.Cliente.findAll();
+    const clientes = await querycli();
 
     const clientesFiltrados = [];
 
