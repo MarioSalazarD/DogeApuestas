@@ -167,7 +167,9 @@ app.post('/register', async(req, res) => {
         res.redirect('/register')
     }
 })
-
+app.get("/login/index.ejs",(req, res, next) => {
+    res.render("index.ejs")
+  });
 
 app.get("/login/admin",(req, res, next) => {
     res.render("loginA.ejs")
