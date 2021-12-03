@@ -112,7 +112,7 @@ app.post(("/autent"),async (req, res, next) => {
         login = usuarios.length ? usuarios[0].contrasena === req.body.password : false;
         if (login) {
           req.session.user = usuarios[0];
-          res.redirect("/cliente");
+          res.redirect("/inicio.ejs");
         } else res.render("login.ejs");
       })
       .catch((error) => {
