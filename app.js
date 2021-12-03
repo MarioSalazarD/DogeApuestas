@@ -275,10 +275,10 @@ app.get( ('/administrarBanners'), async (req,res,next) => {
 })
 
 app.get(('/hojas'),async (req,res,next)=>{
-    let hojas = await query1h().catch((error)=>{
+    let hojas = await queryh().catch((error)=>{
         console.log("Ocurrio un error en el query", error);
     });
-    let partidas = await query1p().catch((error)=>{
+    let partidas = await queryp().catch((error)=>{
         console.log("ocurrio un error en el query", error);
     });
 
