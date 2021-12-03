@@ -128,75 +128,7 @@ app.use(express.json());
 
 //Sets view route for our index page
 app.get('/', forwardAuthenticated, (req, res) => {
-    res.render('index.ejs', { name: req.user.name })
-})
-
-//Sets view route for our login page
-app.get('/login', (req, res) => {
-    res.render('login.ejs')
-});
-
-//Sets view route for our register page
-app.get('/register', (req, res) => {
-    res.render('register.ejs')
-});
-
-app.get('/inicio', (req, res) => {
     res.render('inicio.ejs')
-});
-
-//Sets view route for our juegos page
-app.get('/juegos', (req, res) => {
-    var juegos = [
-        { id : "1", nombre: "Liga de Campiones", categoria: 'Fultbol'},
-        { id : "2", nombre: "Basket1", categoria: 'Basket'},
-        { id : "3", nombre: "Las Nacionales", categoria: 'Voley'},
-        { id : "4", nombre: "Maraton", categoria: 'Tennis'}
-    ]
-    res.render('juegos.ejs', {juegos: juegos})
-});
-// crear un juego
-app.get('/juegosnuevo', (req, res) => {
-    res.render('juegosnuevo.ejs')
-});
-//editar juegos
-app.get('/juegoeditar', (req, res) => {
-    res.render('juegoeditar.ejs')
-});
-
-//lista de partidas
-app.get('/partidas', (req, res) => {
-    var partidas = [
-        { id : "1", juego: "Liga de Campiones", fecha: 'Fultbol', hora:"15:00",duracion:"30"},
-        { id : "2", juego: "Basket1", fecha: 'Basket', hora:"15:00",duracion:"30"},
-        { id : "3", juego: "Las Nacionales", fecha: 'Voley', hora:"15:00",duracion:"30"},
-        { id : "4", juego: "Maraton", fecha: 'Tennis', hora:"15:00",duracion:"30"}
-    ]
-    res.render('partidas.ejs', {partidas: partidas})
-});
-//manejo de register
-app.post('/register', async(req, res) => {
-    try {
-        const hash = await bcrypt.hash(req.body.password, 10)
-        users.push({
-            id: Date.now().toString(),
-            name: req.body.name,
-            email: req.body.email,
-            password: hash
-        })
-        res.redirect('/login')
-    } catch {
-        res.redirect('/register')
-    }
-})
-
-//Manejo de Login
-app.post('/login', passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/login',
-    failureFlash: true
-}))
-
 
 app.get("/login/admin",(req, res, next) => {
     res.render("loginA.ejs")
@@ -236,7 +168,7 @@ app.post(("/login/autentC"),async (req, res, next) => {
         if (login) {
           req.session.user = usuarios[0];
           res.redirect("index.ejs");
-        } else res.render("loginB.ejs");
+        } else res.render("Error.ejs");
       })
       .catch((error) => {
         console.log("Ocurrio un error en el query", error);
