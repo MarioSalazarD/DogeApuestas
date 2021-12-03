@@ -124,8 +124,12 @@ app.get('/', (req, res) => {
     res.render('index.ejs')
 });
 
-app.get('/', (req, res) => {
+app.get('/login/index2.ejs', (req, res) => {
     res.render('index2.ejs')
+});
+
+app.get('/login/inicio', (req, res) => {
+    res.render('inicio.ejs')
 });
 
 //Sets view route for our juegos page
