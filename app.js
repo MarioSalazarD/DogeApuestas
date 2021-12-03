@@ -255,7 +255,6 @@ app.get('/partidas',async (req,res,next)=>{
 })
 
 
-<<<<<<< Updated upstream
 
 app.get('/noAutorizado',(req,res)=>{
     res.render('noeresAdmin',{
@@ -264,8 +263,6 @@ app.get('/noAutorizado',(req,res)=>{
     })
 })
 
-=======
->>>>>>> Stashed changes
 app.get( ('/administrarpartidas'), async (req,res,next) => {
     // Aqui debo leer la BD y mostrar los datos en la vista principal
     await queryp()
