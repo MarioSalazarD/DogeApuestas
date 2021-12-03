@@ -1,7 +1,7 @@
 const models = require("../models");
 const usr = models.CategoriaJuego;
 
-const inserta = async(cod, nom, eda) => {
+const insertacat = async(cod, nom, eda) => {
     console.log("==> Inicio de insert")
 
     return usr.create({
@@ -16,4 +16,4 @@ const inserta = async(cod, nom, eda) => {
 }
 
 // Invocar
-module.exports = inserta
+module.exports = insertacat

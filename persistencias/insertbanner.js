@@ -1,7 +1,7 @@
 const models = require("../models");
 const usr = models.Banner;
 
-const inserta = async(cod, nom, eda) => {
+const insertaba = async(cod, nom, eda) => {
     console.log("==> Inicio de insert")
 
     return usr.create({
@@ -19,4 +19,4 @@ const inserta = async(cod, nom, eda) => {
 }
 
 // Invocar
-module.exports = inserta
+module.exports = insertaba

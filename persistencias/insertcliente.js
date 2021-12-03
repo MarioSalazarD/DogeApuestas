@@ -1,7 +1,7 @@
 const models = require("../models");
 const usr = models.Cliente;
 
-const inserta = async(cod, nom, ape, dni, img, corr, cont, telf, dir, pep, est ) => {
+const insertacli = async(cod, nom, ape, dni, img, corr, cont, telf, dir, pep, est ) => {
     console.log("==> Inicio de insert")
 
     return usr.create({
@@ -25,4 +25,4 @@ const inserta = async(cod, nom, ape, dni, img, corr, cont, telf, dir, pep, est )
 }
 
 // Invocar
-module.exports = inserta
+module.exports = insertacli

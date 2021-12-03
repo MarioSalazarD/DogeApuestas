@@ -4,7 +4,7 @@ Consulta sin filtros
 const models = require("../models");
 const usr = models.Provincia;
 
-const query = async() => {
+const querypr = async() => {
     console.log("==> Inicio de query");
 
     return usr.findAll()
@@ -24,4 +24,4 @@ const query = async() => {
     console.log("==> Final de query");
 }
 
-module.exports = query
+module.exports = querypr

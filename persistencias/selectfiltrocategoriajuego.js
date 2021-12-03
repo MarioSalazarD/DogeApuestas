@@ -7,7 +7,7 @@ const Op = Sequelize.Op;
 const models = require("../models");
 const usr = models.CategoriaJuego;
 
-const query1 = async(llave) => {
+const query1cat = async(llave) => {
     console.log("==> Inicio de query1");
 
     return usr.findAll({
@@ -35,4 +35,4 @@ const query1 = async(llave) => {
 
 
 // Invocar
-module.exports = query1
+module.exports = query1cat

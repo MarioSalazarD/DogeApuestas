@@ -4,7 +4,7 @@ const Op = Sequelize.Op;
 const models = require("../models");
 const usr = models.Banner;
 
-const actualiza = async(cod, nom, img, url, est) => {
+const actualizab = async(cod, nom, img, url, est) => {
     console.log("==> INicio de update")
 
     return usr.update({
@@ -25,4 +25,4 @@ const actualiza = async(cod, nom, img, url, est) => {
     console.log("==> Fin de update")
 }
 
-module.exports = actualiza
+module.exports = actualizab

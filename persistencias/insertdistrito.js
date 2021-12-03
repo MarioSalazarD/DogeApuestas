@@ -1,7 +1,7 @@
 const models = require("../models");
 const usr = models.Distrito;
 
-const inserta = async(cod, nom, eda) => {
+const insertadis = async(cod, nom, eda) => {
     console.log("==> Inicio de insert")
 
     return usr.create({
@@ -16,4 +16,4 @@ const inserta = async(cod, nom, eda) => {
 }
 
 // Invocar
-module.exports = inserta
+module.exports = insertadis
