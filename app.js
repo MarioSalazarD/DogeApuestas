@@ -198,12 +198,16 @@ app.post('/login', passport.authenticate('local', {
 }))
 
 
-app.get("/login",(req, res, next) => {
-    res.render("login.ejs")
+app.get("/login/admin",(req, res, next) => {
+    res.render("loginA.ejs")
+  });
+
+app.get("/login/cliente",(req, res, next) => {
+    res.render("loginB.ejs")
   });
 
 
-app.post(("/autent"),async (req, res, next) => {
+app.post(("/login/autentA"),async (req, res, next) => {
     await queryad()
       .then((listado) => {
         let login = false;
@@ -214,12 +218,32 @@ app.post(("/autent"),async (req, res, next) => {
         if (login) {
           req.session.user = usuarios[0];
           res.redirect("index.ejs");
-        } else res.render("login.ejs");
+        } else res.render("loginA.ejs");
       })
       .catch((error) => {
         console.log("Ocurrio un error en el query", error);
       });
   });
+
+app.post(("/login/autentC"),async (req, res, next) => {
+    await querycli()
+      .then((listado) => {
+        let login = false;
+        let usuarios = listado.filter(
+          (element) => element.correo === req.body.email
+        );
+        login = usuarios.length ? usuarios[0].contrasena === req.body.password : false;
+        if (login) {
+          req.session.user = usuarios[0];
+          res.redirect("index.ejs");
+        } else res.render("loginB.ejs");
+      })
+      .catch((error) => {
+        console.log("Ocurrio un error en el query", error);
+      });
+  });
+
+
 
 
 
@@ -364,6 +388,7 @@ app.get('/partidas',async (req,res,next)=>{
             console.log("Ocurrio un error en el query", error)
         })
 })
+
 
 
 
