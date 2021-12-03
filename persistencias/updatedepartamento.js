@@ -4,7 +4,7 @@ const Op = Sequelize.Op;
 const models = require("../models");
 const usr = models.Departamento;
 
-const actualizadep = async(id, nom) => {
+const actualizade = async(id, nom) => {
     console.log("==> INicio de update")
 
     return usr.update({
@@ -12,7 +12,7 @@ const actualizadep = async(id, nom) => {
 
         }, {
             where: {
-                codigo: id
+                id: id
             }
         })
         .then((resultado) => {
@@ -23,4 +23,4 @@ const actualizadep = async(id, nom) => {
     console.log("==> Fin de update")
 }
 
-module.exports = actualizadep
+module.exports = actualizade

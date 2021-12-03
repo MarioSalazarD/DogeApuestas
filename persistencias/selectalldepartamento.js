@@ -4,7 +4,7 @@ Consulta sin filtros
 const models = require("../models");
 const usr = models.Departamento;
 
-const querydep = async() => {
+const queryde = async() => {
     console.log("==> Inicio de query");
 
     return usr.findAll()
@@ -24,4 +24,4 @@ const querydep = async() => {
     console.log("==> Final de query");
 }
 
-module.exports = querydep
+module.exports = queryde

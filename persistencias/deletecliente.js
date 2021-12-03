@@ -4,7 +4,7 @@ const Op = Sequelize.Op;
 const models = require("../models");
 const usr = models.Cliente;
 
-const eliminacl = async(llave) => {
+const eliminacli = async(llave) => {
     console.log("==> INicio de delete")
 
     return usr.destroy({
@@ -21,4 +21,4 @@ const eliminacl = async(llave) => {
     console.log("==> Fin de delete")
 }
 
-module.exports = eliminacl
+module.exports = eliminacli

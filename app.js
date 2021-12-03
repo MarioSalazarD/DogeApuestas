@@ -8,8 +8,72 @@ const bcrypt = require('bcrypt')
 const passport = require('passport')
 const flash = require('express-flash')
 const session = require('express-session')
-const query = require("./persistencias/selectallbanner")
 const banner = require("./models/banner")
+//importar persistencias
+//delete
+const eliminaA = require("./persistencias/deleteadministrador")
+const eliminab = require("./persistencias/deletebanner")
+const eliminacat = require("./persistencias/deletecategoriajuego")
+const eliminacli = require("./persistencias/deletecliente")
+const eliminade = require("./persistencias/deletedepartamento")
+const eliminadist = require("./persistencias/deletedistrito")
+const eliminah = require("./persistencias/deletehojapuestas")
+const eliminaj = require("./persistencias/deletejuego")
+const eliminap = require("./persistencias/deletepartida")
+const eliminapr = require("./persistencias/deleteprovincia")
+//insert
+const insertad = require("./persistencias/insertadministrador")
+const insertb = require("./persistencias/insertbanner")
+const insertcat = require("./persistencias/insertcategoriajuego")
+const insertcli = require("./persistencias/insertcliente")
+const insertde = require("./persistencias/insertdepartamento")
+const insertdist = require("./persistencias/insertdistrito")
+const inserth = require("./persistencias/inserthojapuestas")
+const insertj = require("./persistencias/insertjuego")
+const insertp = require("./persistencias/insertpartida")
+const insertpr = require("./persistencias/insertprovincia")
+//selectall
+const queryad = require("./persistencias/selectalladminitrador")
+const queryb = require("./persistencias/selectallbanner")
+const querycat = require("./persistencias/selectallcategoriajuego")
+const querycli = require("./persistencias/selectallcliente")
+const queryde = require("./persistencias/selectalldepartamento")
+const querydist = require("./persistencias/selectalldistrito")
+const queryh = require("./persistencias/selectallhojapuestas")
+const queryj = require("./persistencias/selectalljuego")
+const queryp= require("./persistencias/selectallpartida")
+const querypr= require("./persistencias/selectallprovincia")
+//selectfiltro
+const query1a = require("./persistencias/selectfiltroadministrador")
+const query1b = require("./persistencias/selectfiltrobanner")
+const query1cat = require("./persistencias/selectfiltrocategoriajuego")
+const query1cli = require("./persistencias/selectfiltrocliente")
+const query1de = require("./persistencias/selectfiltrodepartamento")
+const query1dist = require("./persistencias/selectfiltrodistrito")
+const query1h = require("./persistencias/selectfiltrohojapuestas")
+const query1j = require("./persistencias/selectfiltrojuego")
+const query1p = require("./persistencias/selectfiltropartida")
+const query1pr = require("./persistencias/selectfiltroprovincia")
+//update
+const actualizaa = require("./persistencias/updateadministrador")
+const actualizab = require("./persistencias/updatebanner")
+const actualizacat = require("./persistencias/updatecategoriajuego")
+const actualizacli = require("./persistencias/updatecliente")
+const actualizade = require("./persistencias/updatedepartamento")
+const actualizadist = require("./persistencias/updatedistrito")
+const actualizah = require("./persistencias/updatehojapuestas")
+const actualizaj = require("./persistencias/updatejuego")
+const actualizap = require("./persistencias/updatepartida")
+const actualizapr = require("./persistencias/updateprovincia")
+
+
+
+
+
+
+
+
+
 
 //Carga nuestra env if si esta en development 
 if (process.env.NODE_ENV !== 'production') {

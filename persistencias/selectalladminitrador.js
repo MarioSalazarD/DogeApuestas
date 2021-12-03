@@ -4,7 +4,7 @@ Consulta sin filtros
 const models = require("../models");
 const usr = models.Administrador;
 
-const querya = async() => {
+const queryad = async() => {
     console.log("==> Inicio de query");
 
     return usr.findAll()
@@ -24,4 +24,4 @@ const querya = async() => {
     console.log("==> Final de query");
 }
 
-module.exports = querya
+module.exports = queryad

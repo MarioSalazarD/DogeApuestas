@@ -7,7 +7,7 @@ const Op = Sequelize.Op;
 const models = require("../models");
 const usr = models.Administrador;
 
-const query1ad = async(llave) => {
+const query1a = async(llave) => {
     console.log("==> Inicio de query1");
 
     return usr.findAll({
@@ -35,4 +35,4 @@ const query1ad = async(llave) => {
 
 
 // Invocar
-module.exports = query1ad
+module.exports = query1a
