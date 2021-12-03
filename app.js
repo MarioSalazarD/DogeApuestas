@@ -8,8 +8,8 @@ const bcrypt = require('bcrypt')
 const passport = require('passport')
 const flash = require('express-flash')
 const session = require('express-session')
-
-const query = require("../persistencia/selectallbanner")
+const query = require("./persistencias/selectallbanner")
+const banner = require("./models/banner")
 
 //Carga nuestra env if si esta en development 
 if (process.env.NODE_ENV !== 'production') {
@@ -63,20 +63,20 @@ app.get('/register', (req, res) => {
 //Sets view route for our banner page
 app.get('/banners', async (req, res) => {
     
-    await query()
-    .then((listado) =>{
-        res.render('banner.ejs', {banners: listado})
-    })
-    .catch((error) => {
-        console.log("Ocurrio error en query", error);
-    })
-    // var banners = [
-    //     { id : "1", nombre: "Banner Fultbol", imagen: '', url: 'inicio/banners', estado: 'Activo'},
-    //     { id : "2", nombre: "Banner Casino", imagen: '', url: 'inicio/banners', estado: 'Inactivo'},
-    //     { id : "3", nombre: "Banner Carrera Caballos", imagen: '', url: 'inicio/banners', estado: 'Activo'},
-    //     { id : "4", nombre: "Banner Poker", imagen: '', url: 'inicio/banners', estado: 'Inactivo'}
-    // ]
-    // res.render('banner.ejs', {banners: banners})
+    // await query()
+    // .then((listado) =>{
+    //     res.render('banner.ejs', {banners: listado})
+    // })
+    // .catch((error) => {
+    //     console.log("Ocurrio error en query", error);
+    // })
+    // // var banners = [
+    // //     { id : "1", nombre: "Banner Fultbol", imagen: '', url: 'inicio/banners', estado: 'Activo'},
+    // //     { id : "2", nombre: "Banner Casino", imagen: '', url: 'inicio/banners', estado: 'Inactivo'},
+    // //     { id : "3", nombre: "Banner Carrera Caballos", imagen: '', url: 'inicio/banners', estado: 'Activo'},
+    // //     { id : "4", nombre: "Banner Poker", imagen: '', url: 'inicio/banners', estado: 'Inactivo'}
+    // // ]
+    // // res.render('banner.ejs', {banners: banners})
 });
 
 //manejo de register
@@ -157,22 +157,37 @@ app.get('/PoliticasPrivacidad',(req,res)=>{
         nombre: req.session.nombre})
 })
 
-app.get('/administrarBanners', async (req, res)=>{
-    const banners = await db.Banner.findAll({
-        order :[
-            ['id', 'ASC']
-        ]
-    });
-    //console.log(torneos);
-    if(req.session.rol=="admin"){
-        res.render('administrarBanner',{
-            banners: banners,
-            rol: req.session.rol,
-            nombre: req.session.nombre
-            })
-    }else{
-        res.redirect('/noAutorizado')
-    }
+// app.get('/administrarBanners', async (req, res)=>{
+//     const banners = await db.Banner.findAll({
+//         order :[
+//             ['id', 'ASC']
+//         ]
+//     });
+//     //console.log(torneos);
+//     if(req.session.rol=="admin"){
+//         res.render('administrarBanner',{
+//             banners: banners,
+//             rol: req.session.rol,
+//             nombre: req.session.nombre
+//             })
+//     }else{
+//         res.redirect('/noAutorizado')
+//     }
+    
+// })
+
+
+app.get( ('/administrarBanners'), async (req,res,next) => {
+    // Aqui debo leer la BD y mostrar los datos en la vista principal
+    // Voy a usar la pantilla2
+    await query()
+        .then( (listado) => {
+            res.render('banner.ejs', {banners: listado})
+        } )
+        .catch( (error) => {
+            console.log("Ocurrio un error en el query", error)
+        })
+
 })
 
 app.get('/administrarBanners/new', (req, res)=>{
