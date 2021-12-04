@@ -116,13 +116,26 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 
+
 app.get('/inicio', (req, res) => {
     res.render('inicio.ejs')
 });
 
-app.get('/', (req, res) => {
+//Set up secret key located in the .env file
+// app.use(flash())
+// app.use(session({
+//     secret: 'mi secreto',
+//     resave: true,
+//     saveUninitialized: true
+// }))
+// app.use(passport.initialize())
+// app.use(passport.session())
+
+//Sets view route for our index page
+app.get('/',  (req, res) => {
     res.render('index.ejs')
-});
+})
+
 
 app.get('/login/index2.ejs', (req, res) => {
     res.render('index2.ejs')
