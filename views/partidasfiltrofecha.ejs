@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Filtrar partidas Partidas</title>  
+        <meta charset="utf-8" />
+        <link rel="shortcut icon" href="/imagenes/logo.png" />
+        <link rel="stylesheet" href="/css/index.css" type="text/css"> 
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    </head>
+    <body class="">
+        <%- include('header-rol') %>
+        <h1 class="container">Partidas</h1>
+        <div class="card-body">
+            <a class="link" href="/"> <-Regresar</a>
+            <%- include('bannerspartidas') %>
+            
+            <div class="m-md-5 mt-3">
+            <% if(partidas.length > 0){ %> 
+                    <a class="link" href="/partidas"><- Retornar a Partidas</a>
+                    <h2> Partidas Proximas </h2>
+            </div>                 
+            <div class="mb-3">
+                <form method="post" action="partidas/filtro" >
+                    <div class="dropdown">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                          Categoria:
+                        </a>
+                      
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li><a class="dropdown-item" href="/partidas">Mostrar todos</a></li>
+                        <% categorias.forEach((categoria) => {  %>
+                            <li><a class="dropdown-item" href="/partidas/filtro/<%=categoria.id%>"><%=categoria.nombre%></a></li>
+                        <% })%>
+                        </ul>
+                    </div>
+                </form>
+                
+               
+            </div>
+            
+                <div class="table-responsive">
+                
+                <table class="table table-hover">
+                
+                    <thead>
+                        <tr>
+                            <th>Partida</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Duración</th>
+                            <th class="text-center" colspan="3" >Ganador del Partido</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% partidas.forEach( (partida) => { %>
+                            <tr>
+                                <td><%= partida.equipoA %> vs. <%= partida.equipoB %></td>
+                                <td><%= partida.fecha.toISOString().substring(0,10) %></td>
+                                <td><%= partida.hora %></td>
+                                <td><%= partida.duracion %> h</td>
+                                <td><%= partida.equipoA %> <%= partida.factorA %></td>
+                                <td>Empate <%= partida.factorEmpate %></td>
+                                <td><%= partida.equipoB %> <%= partida.factorB %></td>
+                            </tr>
+                        <% })  %>
+                    </tbody>
+                </table>
+                <% } else { %>
+                    <p>No hay partidas disponibles aun.</p>
+                <% } %>
+            </div>
+        </div>
+
+        <%- include('footer')%>
+    </body>
+</html>

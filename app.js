@@ -422,7 +422,7 @@ app.get('/noAutorizado',(req,res)=>{
     })
 })
 
-//---------------Jemima----------------------------------------
+
 
 app.get('/partidas',async (req,res,next)=>{
     await queryp()
@@ -438,7 +438,7 @@ app.get('/partidas',async (req,res,next)=>{
 //insertar partida
 app.post('/insertarpartida',async (req,res,next)=>{
     await insertp(
-        req.body.id, 
+        1, 
         req.body.day, 
         req.body.hora,
         req.body.dur,
@@ -476,7 +476,11 @@ app.get('/partidasnuevo',async (req,res,next)=>{
 })
 
 app.get('/nosotros',(req,res)=>{
-    res.render('nosotros',{
+    res.render('nosotros.ejs')
+})
+
+app.get('/partidasfiltrofecha',(req,res)=>{
+    res.render('partidasfiltrofecha',{
         rol: req.session.rol,
         nombre: req.session.nombre})
 })
