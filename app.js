@@ -175,19 +175,8 @@ app.get('/partidas', (req, res) => {
     res.render('partidas.ejs', {partidas: partidas})
 });
 //manejo de register
-app.post('/register', async(req, res) => {
-    try {
-        const hash = await bcrypt.hash(req.body.password, 10)
-        users.push({
-            id: Date.now().toString(),
-            name: req.body.name,
-            email: req.body.email,
-            password: hash
-        })
-        res.redirect('/login')
-    } catch {
-        res.redirect('/register')
-    }
+app.get('/register',(req,res)=>{
+    res.render('register.ejs')
 })
 app.get("/login/index.ejs",(req, res, next) => {
     res.render("index.ejs")
